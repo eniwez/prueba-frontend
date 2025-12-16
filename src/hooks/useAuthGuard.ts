@@ -9,14 +9,16 @@ export function useAuthGuard() {
 
   useEffect(() => {
     if (isLoading) return;
+
     const loggedIn = Boolean(token);
+    const publicPaths = ["/login", "/verify"];
 
     if (loggedIn && location.pathname === "/login") {
       navigate("/", { replace: true });
     }
 
-    if (!loggedIn && location.pathname !== "/login") {
+    if (!loggedIn && !publicPaths.includes(location.pathname)) {
       navigate("/login", { replace: true });
     }
-  }, [token, location.pathname, navigate]);
+  }, [token, location.pathname, navigate, isLoading]);
 }
