@@ -1,12 +1,13 @@
 import { useMutation } from "@tanstack/react-query";
+import { API } from "../config/api";
 
 export function useVerify() {
   return useMutation({
     mutationFn: async (token: string) => {
-      const response = await fetch("http://localhost:3000/auth/verify", {
-        method: "POST", 
+      const response = await fetch(API.VERIFY, {
+        method: "POST",
         headers: {
-          "Authorization": `Bearer ${token}`,
+          Authorization: `Bearer ${token}`,
           "Content-Type": "application/json",
         },
       });
