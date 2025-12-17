@@ -18,13 +18,12 @@ export default function HomePage() {
   const { data, isLoading, error, refetch } = useRandomCharacter();
   const { mutate: vote } = useVoteCharacter();
   const navigate = useNavigate();
-  const queryClient = useQueryClient();
 
   const [isAnimating, setIsAnimating] = useState(false);
   const [animationClass, setAnimationClass] = useState("");
 
   if (isLoading) return <Loading />;
-  if (error) return <ErrorPage />;;
+  if (error) return <ErrorPage />;
 
   const handleVote = (type: "like" | "dislike") => {
     if (isAnimating || !data) return;
@@ -37,14 +36,7 @@ export default function HomePage() {
 
     setAnimationClass(animation);
 
-    vote(
-      { id: data._id, type },
-      {
-        onSuccess: () => {
-          queryClient.invalidateQueries({ queryKey: ["voteHistory"] });
-        },
-      }
-    );
+    vote({ id: data._id, type });
   };
 
   const handleHistory = () => {
@@ -59,7 +51,6 @@ export default function HomePage() {
           backgroundImage: `url(${backgroundHome})`,
         }}
       ></div>
-      <div className="absolute inset-0 bg-white/10 z-[-1]"></div>
       <div className="flex flex-col items-center justify-center ">
         <div className="flex justify-center items-center mt-10 mb-20">
           <img
