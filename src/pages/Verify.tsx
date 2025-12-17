@@ -23,8 +23,7 @@ export default function VerifyPage() {
         navigate("/");
       },
       onError: () => {
-        alert(`Login invalido o expirado. Por favor, inicia sesión de nuevo.`);
-        navigate("/login");
+        navigate("/error");
       },
     });
   }, [token]);

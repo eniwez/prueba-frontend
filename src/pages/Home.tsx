@@ -7,7 +7,6 @@ import CharacterCard from "../components/CharacterCard";
 import ActionButtons from "../components/ActionButtons";
 import { useVoteCharacter } from "../hooks/useVoteCharacter";
 import { useNavigate } from "react-router";
-import { useQueryClient } from "@tanstack/react-query";
 import logoImage from "../assets/logo.png";
 import backgroundHome from "../assets/background-home.jpg";
 import ErrorPage from "./Error";

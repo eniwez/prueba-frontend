@@ -11,6 +11,7 @@ import LoginPage from "./pages/Login.tsx";
 import VerifyPage from "./pages/Verify.tsx";
 import HistoryPage from "./pages/History.tsx";
 import ErrorPage from "./pages/Error.tsx";
+import { LoginSuccessPage } from "./pages/LoginSuccess.tsx";
 
 const queryClient = new QueryClient();
 

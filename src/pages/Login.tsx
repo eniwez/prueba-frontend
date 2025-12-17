@@ -1,11 +1,12 @@
 import { useForm } from "react-hook-form";
-import {useLogin } from "../hooks/useLogin";
+import { useLogin } from "../hooks/useLogin";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Input } from "../components/Input";
 import { Button } from "../components/Button";
 import backgroundLogin from "../assets/background-login.jpg";
 import logoImage from "../assets/logo.png";
 import { loginSchema, type LoginFormData } from "../api/auth.api";
+import { LoginSuccessPage } from "./LoginSuccess";
 
 export default function LoginForm() {
   const {
@@ -20,6 +21,15 @@ export default function LoginForm() {
   const onSubmit = (data: LoginFormData) => {
     loginMutation.mutate(data);
   };
+
+  if (loginMutation.isSuccess && loginMutation.data) {
+    return (
+      <LoginSuccessPage
+        email={loginMutation.variables?.email ?? ""}
+        loginToken={loginMutation.data.loginToken}
+      />
+    );
+  }
 
   return (
     <div className="min-h-screen flex flex-col md:flex-row">

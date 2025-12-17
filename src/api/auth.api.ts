@@ -20,8 +20,13 @@ export function loginRequest(body: LoginFormData) {
   });
 }
 
+export interface VerifyResponse {
+  accessToken: string;
+  expiresIn: string;
+}
+
 export function verifyToken(token: string) {
-  return fetchClient(`${API.VERIFY}`, {
+  return fetchClient<VerifyResponse>(`${API.VERIFY}`, {
     method: "POST",
     token,
   });
