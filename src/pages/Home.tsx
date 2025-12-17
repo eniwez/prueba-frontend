@@ -9,6 +9,7 @@ import { useVoteCharacter } from "../hooks/useVoteCharacter";
 import { useNavigate } from "react-router";
 import { useQueryClient } from "@tanstack/react-query";
 import logoImage from "../assets/logo.png";
+import backgroundHome from "../assets/background-home.jpg";
 
 export default function HomePage() {
   useAuthGuard();
@@ -50,13 +51,20 @@ export default function HomePage() {
   };
 
   return (
-
+    <div className="min-h-screen relative overflow-hidden ">
+      <div
+        className="absolute inset-0 bg-cover bg-center blur-md z-[-1]"
+        style={{
+          backgroundImage: `url(${backgroundHome})`,
+        }}
+      ></div>
+      <div className="absolute inset-0 bg-white/10 z-[-1]"></div>
       <div className="flex flex-col items-center justify-center ">
         <div className="flex justify-center items-center mt-10 mb-20">
           <img
             src={logoImage}
             alt="Rick and Morty"
-            className="w-full h-20 sm:h-40"
+            className="w-full h-20 sm:h-40 drop-shadow-[0_10px_15px_rgba(0,0,0,0.5)] transform hover:-translate-y-2 transition duration-300 ease-in-out"
           />
         </div>
         <CharacterCard
@@ -73,5 +81,6 @@ export default function HomePage() {
           onHistory={handleHistory}
         />
       </div>
+    </div>
   );
 }

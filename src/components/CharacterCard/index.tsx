@@ -15,7 +15,7 @@ export default function CharacterCard({ character, onAnimationEnd, animationClas
 
   return (
     <div
-      className={`relative w-70 h-90 md:w-80 md:h-100 rounded-lg shadow-xl overflow-hidden ${animationClass}`}
+      className={`relative w-70 h-90 md:w-80 md:h-100 rounded-lg shadow-xl overflow-hidden transform transition-transform duration-300 ease-in-out hover:scale-105 mb-5 ${animationClass} `}
       onAnimationEnd={() => {
         setShowSkeleton(true);
         setImageLoaded(false);
