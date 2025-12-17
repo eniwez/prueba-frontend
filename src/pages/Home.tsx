@@ -23,33 +23,22 @@ export default function HomePage() {
   if (isLoading) return <Loading />;
   if (error) return <p>Error</p>;
 
-  const handleLike = () => {
-    if (isAnimating) return;
-    setIsAnimating(true);
-    setAnimationClass("animate__animated animate__fadeOutRight");
-    vote(
-      { id: data!._id, type: "like" },
-      {
-        onSuccess: () => {
-          queryClient.invalidateQueries({
-            queryKey: ["voteHistory"],
-          });
-        },
-      }
-    );
-  };
+  const handleVote = (type: "like" | "dislike") => {
+    if (isAnimating || !data) return;
 
-  const handleDislike = () => {
-    if (isAnimating) return;
     setIsAnimating(true);
-    setAnimationClass("animate__animated animate__fadeOutLeft");
+    const animation =
+      type === "like"
+        ? "animate__animated animate__fadeOutRight"
+        : "animate__animated animate__fadeOutLeft";
+
+    setAnimationClass(animation);
+
     vote(
-      { id: data!._id, type: "dislike" },
+      { id: data._id, type },
       {
         onSuccess: () => {
-          queryClient.invalidateQueries({
-            queryKey: ["voteHistory"],
-          });
+          queryClient.invalidateQueries({ queryKey: ["voteHistory"] });
         },
       }
     );
@@ -77,8 +66,8 @@ export default function HomePage() {
         }}
       />
       <ActionButtons
-        onLike={handleLike}
-        onDislike={handleDislike}
+        onLike={() => handleVote("like")}
+        onDislike={() => handleVote("dislike")}
         onHistory={handleHistory}
       />
     </div>
