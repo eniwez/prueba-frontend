@@ -2,6 +2,7 @@ import { useNavigate, useSearchParams } from "react-router";
 import { useEffect } from "react";
 import { useVerify } from "../hooks/useVerify";
 import { useAuth } from "../context/AuthContext";
+import Loading from "../components/Loading";
 
 export default function VerifyPage() {
   const [searchParams] = useSearchParams();
@@ -28,18 +29,5 @@ export default function VerifyPage() {
     });
   }, [token]);
 
-  return (
-    <div>
-      <h1>Verify Page</h1>
-      {verifyMutation.isPending && <p>Verificando...</p>}
-      {verifyMutation.isError && (
-        <p style={{ color: "red" }}>
-          Error: {(verifyMutation.error as Error).message}
-        </p>
-      )}
-      {verifyMutation.data && (
-        <p>Access Token: {verifyMutation.data.accessToken}</p>
-      )}
-    </div>
-  );
+  return <Loading />;
 }

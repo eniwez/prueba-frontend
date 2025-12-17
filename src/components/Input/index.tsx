@@ -19,7 +19,7 @@ export function Input({
         type={type}
         placeholder={placeholder}
         {...props}
-        className={`border p-2 rounded w-full ${
+        className={`border p-4 rounded-full w-full ${
           error
             ? "border-red-500 focus:border-red-500"
             : "border-gray-300 focus:border-blue-500"
