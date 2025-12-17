@@ -9,6 +9,7 @@ import AuthLayout from "./layouts/AuthLayout.tsx";
 import HomePage from "./pages/Home.tsx";
 import LoginPage from "./pages/Login.tsx";
 import VerifyPage from "./pages/Verify.tsx";
+import HistoryPage from "./pages/History.tsx";
 
 const queryClient = new QueryClient();
 
@@ -22,6 +23,7 @@ createRoot(document.getElementById("root")!).render(
               <Route path="/" element={<HomePage />} />
               <Route path="/login" element={<LoginPage />} />
               <Route path="/verify" element={<VerifyPage />} />
+              <Route path="/history" element={<HistoryPage />} />
             </Route>
           </Routes>
         </BrowserRouter>
