@@ -10,6 +10,7 @@ import HomePage from "./pages/Home.tsx";
 import LoginPage from "./pages/Login.tsx";
 import VerifyPage from "./pages/Verify.tsx";
 import HistoryPage from "./pages/History.tsx";
+import ErrorPage from "./pages/Error.tsx";
 
 const queryClient = new QueryClient();
 
@@ -24,6 +25,10 @@ createRoot(document.getElementById("root")!).render(
               <Route path="/login" element={<LoginPage />} />
               <Route path="/verify" element={<VerifyPage />} />
               <Route path="/history" element={<HistoryPage />} />
+              <Route
+                path="*"
+                element={<ErrorPage message="Página no encontrada" />}
+              />
             </Route>
           </Routes>
         </BrowserRouter>

@@ -10,6 +10,7 @@ import { useNavigate } from "react-router";
 import { useQueryClient } from "@tanstack/react-query";
 import logoImage from "../assets/logo.png";
 import backgroundHome from "../assets/background-home.jpg";
+import ErrorPage from "./Error";
 
 export default function HomePage() {
   useAuthGuard();
@@ -23,7 +24,7 @@ export default function HomePage() {
   const [animationClass, setAnimationClass] = useState("");
 
   if (isLoading) return <Loading />;
-  if (error) return <p>Error</p>;
+  if (error) return <ErrorPage />;;
 
   const handleVote = (type: "like" | "dislike") => {
     if (isAnimating || !data) return;

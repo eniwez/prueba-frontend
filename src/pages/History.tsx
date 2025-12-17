@@ -4,6 +4,7 @@ import { useVoteHistory, type VoteHistoryItem } from "../hooks/useVoteHistory";
 import { useNavigate } from "react-router";
 import Loading from "../components/Loading";
 import { useAuth } from "../context/AuthContext";
+import ErrorPage from "./Error";
 
 export default function HistoryPage() {
   const { data, isLoading, error } = useVoteHistory();
@@ -11,7 +12,7 @@ export default function HistoryPage() {
   const { logout } = useAuth();
 
   if (isLoading) return <Loading />;
-  if (error) return <p>Error</p>;
+  if (error) return <ErrorPage />;
 
   const likesCount =
     data?.filter((vote: VoteHistoryItem) => vote.type === "like").length ?? 0;
@@ -45,11 +46,11 @@ export default function HistoryPage() {
       <div className="max-w-md mx-auto mt-30 px-2">
         <p className="text-sm text-black font-bold mb-4 flex items-center gap-4">
           <span>
-            Total Likes:{" "}
+            Total Me gusta:{" "}
             <span className="text-green-500 font-medium">{likesCount}</span>
           </span>
           <span>
-            Total Dislikes:{" "}
+            Total No me gusta:{" "}
             <span className="text-red-500 font-medium">{dislikesCount}</span>
           </span>
         </p>

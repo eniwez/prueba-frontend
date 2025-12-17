@@ -11,11 +11,11 @@ export default function VoteItemCard({ vote }: { vote: VoteHistoryItem }) {
       <div className="flex-1">
         <p className="font-medium">{vote.character.name}</p>
         <p className="text-sm font-semibold   uppercase">
-          <span
-            className={vote.type === "like" ? "text-green-500" : "text-red-500"}
-          >
-            {vote.type}
-          </span>
+          {vote.type === "like" ? (
+            <span className="text-green-500">Me gusta</span>
+          ) : (
+            <span className="text-red-500">No me gusta</span>
+          )}
         </p>
         <p className="text-xs text-gray-400">
           {new Date(vote.createdAt).toLocaleString()}
