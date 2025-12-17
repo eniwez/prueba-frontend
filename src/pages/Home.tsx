@@ -8,6 +8,7 @@ import ActionButtons from "../components/ActionButtons";
 import { useVoteCharacter } from "../hooks/useVoteCharacter";
 import { useNavigate } from "react-router";
 import { useQueryClient } from "@tanstack/react-query";
+import logoImage from "../assets/logo.png";
 
 export default function HomePage() {
   useAuthGuard();
@@ -49,27 +50,28 @@ export default function HomePage() {
   };
 
   return (
-    <div className="flex flex-col items-center justify-center ">
-      <div className="flex justify-center items-center mt-10 mb-20">
-        <img
-          src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/b1/Rick_and_Morty.svg/960px-Rick_and_Morty.svg.png"
-          alt="Rick and Morty"
-          className="w-full h-20 sm:h-40"
+
+      <div className="flex flex-col items-center justify-center ">
+        <div className="flex justify-center items-center mt-10 mb-20">
+          <img
+            src={logoImage}
+            alt="Rick and Morty"
+            className="w-full h-20 sm:h-40"
+          />
+        </div>
+        <CharacterCard
+          character={data}
+          animationClass={animationClass}
+          onAnimationEnd={() => {
+            setAnimationClass("");
+            refetch().finally(() => setIsAnimating(false));
+          }}
+        />
+        <ActionButtons
+          onLike={() => handleVote("like")}
+          onDislike={() => handleVote("dislike")}
+          onHistory={handleHistory}
         />
       </div>
-      <CharacterCard
-        character={data}
-        animationClass={animationClass}
-        onAnimationEnd={() => {
-          setAnimationClass("");
-          refetch().finally(() => setIsAnimating(false));
-        }}
-      />
-      <ActionButtons
-        onLike={() => handleVote("like")}
-        onDislike={() => handleVote("dislike")}
-        onHistory={handleHistory}
-      />
-    </div>
   );
 }
