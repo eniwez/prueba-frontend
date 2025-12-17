@@ -1,6 +1,6 @@
 import { useQuery } from "@tanstack/react-query";
 import { useAuth } from "../context/AuthContext";
-import { API } from "../config/api";
+import { getVoteHistory } from "../api/vote.api";
 
 export interface Character {
   _id: string;
@@ -23,21 +23,6 @@ export function useVoteHistory() {
   return useQuery({
     queryKey: ["voteHistory"],
     staleTime: 1000 * 60 * 5,
-    queryFn: async () => {
-      const response = await fetch(`${API.VOTE}/history`, {
-        method: "GET",
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: `Bearer ${token}`,
-        },
-      });
-
-      if (!response.ok) {
-        throw new Error("Error al obtener el historial de votos");
-      }
-
-      const data = await response.json();
-      return data;
-    },
+    queryFn: () => getVoteHistory(token!),
   });
 }

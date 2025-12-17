@@ -25,6 +25,7 @@ createRoot(document.getElementById("root")!).render(
               <Route path="/login" element={<LoginPage />} />
               <Route path="/verify" element={<VerifyPage />} />
               <Route path="/history" element={<HistoryPage />} />
+              <Route path="/error" element={<ErrorPage />} />
               <Route
                 path="*"
                 element={<ErrorPage message="Página no encontrada" />}

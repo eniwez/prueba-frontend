@@ -1,6 +1,6 @@
 import { useQuery } from "@tanstack/react-query";
-import { API } from "../config/api";
 import { useAuth } from "../context/AuthContext";
+import { getRandomCharacter } from "../api/character.api";
 
 export interface Character {
   _id: string;
@@ -22,26 +22,15 @@ export function useRandomCharacter() {
     refetchOnWindowFocus: false,
 
     queryFn: async () => {
-      const response = await fetch(`${API.CHARACTERS}/random`, {
-        method: "GET",
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: `Bearer ${token}`,
-        },
-      });
-
-      if (response.status === 401) {
-        logout();
-        throw new Error("Sesión expirada.");
+      try {
+        return await getRandomCharacter(token!);
+      } catch (error: any) {
+        if (error.message === "Unauthorized") {
+          logout();
+          throw new Error("Sesión expirada.");
+        }
+        throw error;
       }
-
-      if (!response.ok) {
-        const errorData = await response.json().catch(() => ({}));
-        throw new Error(errorData.message || "Error al obtener un personaje.");
-      }
-
-      const data = await response.json();
-      return data;
     },
   });
 }

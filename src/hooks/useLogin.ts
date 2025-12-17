@@ -1,28 +1,17 @@
 import { useMutation } from "@tanstack/react-query";
-import { z } from "zod";
-import { API } from "../config/api";
-
-export const loginSchema = z.object({
-  email: z.email({ message: "Debes ingresar un correo válido" }),
-});
-
-export type LoginFormData = z.infer<typeof loginSchema>;
+import { loginRequest, type LoginFormData } from "../api/auth.api";
+import { useNavigate } from "react-router";
 
 export function useLogin() {
+  const navigate = useNavigate();
   return useMutation({
-    mutationFn: async (body: LoginFormData) => {
-      const response = await fetch(API.LOGIN, {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(body),
-      });
-
-      if (!response.ok) {
-        throw new Error("Error al iniciar sesión");
-      }
-
-      const data = await response.json();
-      return data;
+    mutationFn: (body: LoginFormData) => loginRequest(body),
+    onSuccess: (response, variables) => {
+      alert(`Simulacion de envio de magic link al correo: ${variables.email}`);
+      navigate(`/verify?token=${encodeURIComponent(response.loginToken)}`);
+    },
+    onError: () => {
+      navigate("/error");
     },
   });
 }

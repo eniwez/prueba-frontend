@@ -1,11 +1,11 @@
 import { useForm } from "react-hook-form";
-import { loginSchema, useLogin, type LoginFormData } from "../hooks/useLogin";
-import { useNavigate } from "react-router";
+import {useLogin } from "../hooks/useLogin";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Input } from "../components/Input";
 import { Button } from "../components/Button";
 import backgroundLogin from "../assets/background-login.jpg";
 import logoImage from "../assets/logo.png";
+import { loginSchema, type LoginFormData } from "../api/auth.api";
 
 export default function LoginForm() {
   const {
@@ -16,18 +16,9 @@ export default function LoginForm() {
     resolver: zodResolver(loginSchema),
   });
   const loginMutation = useLogin();
-  const navigate = useNavigate();
 
   const onSubmit = (data: LoginFormData) => {
-    loginMutation.mutate(data, {
-      onSuccess: (response) => {
-        alert(`Simulacion de envio de magic link al correo: ${data.email}`);
-        navigate(`/verify?token=${encodeURIComponent(response.loginToken)}`);
-      },
-      onError: () => {
-        alert("Oops! Algo salió mal, por favor inténtalo de nuevo.");
-      },
-    });
+    loginMutation.mutate(data);
   };
 
   return (
