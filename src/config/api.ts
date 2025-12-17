@@ -4,4 +4,5 @@ export const API = {
   LOGIN: `${API_BASE_URL}/auth/login`,
   VERIFY: `${API_BASE_URL}/auth/verify`,
   CHARACTERS: `${API_BASE_URL}/characters`,
+  VOTE: `${API_BASE_URL}/vote`,
 };

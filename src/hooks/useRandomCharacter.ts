@@ -12,7 +12,7 @@ export interface Character {
 }
 export function useRandomCharacter() {
   const { token, logout } = useAuth();
-  
+
   return useQuery<Character>({
     queryKey: ["random-character"],
     enabled: !!token,
@@ -40,7 +40,8 @@ export function useRandomCharacter() {
         throw new Error(errorData.message || "Error al obtener un personaje.");
       }
 
-      return response.json();
+      const data = await response.json();
+      return data;
     },
   });
 }

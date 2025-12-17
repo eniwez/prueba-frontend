@@ -16,7 +16,8 @@ export function useVerify() {
         throw new Error("Error al verificar el token");
       }
 
-      return response.json();
+      const data = await response.json();
+      return data;
     },
   });
 }
