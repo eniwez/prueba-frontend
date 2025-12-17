@@ -1,8 +1,9 @@
-import type { VoteHistoryItem } from "../../hooks/useVoteHistory";
+import type { VoteHistoryItem } from "../../api/vote.api";
+
 
 export default function VoteItemCard({ vote }: { vote: VoteHistoryItem }) {
   return (
-    <div className="flex items-center gap-4 p-3 rounded-xl bg-white shadow-lg hover:bg-gray-100 transition">
+    <div className="flex items-center gap-4 p-3 rounded-xl  border border-gray-100 bg-white shadow-lg hover:bg-gray-100 transition">
       <img
         src={vote.character.image}
         alt={vote.character.name}

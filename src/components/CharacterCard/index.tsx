@@ -1,21 +1,24 @@
 import { useState } from "react";
-import type { Character } from "../../hooks/useRandomCharacter";
-
-
 
 interface CharacterCardProps {
-  character: Character | undefined;
+  image?: string;
+  name?: string;
+  animationClass?: string;
   onAnimationEnd?: () => void;
-  animationClass: string;
 }
 
-export default function CharacterCard({ character, onAnimationEnd, animationClass }:CharacterCardProps) {
+export default function CharacterCard({
+  image,
+  name,
+  animationClass = "",
+  onAnimationEnd,
+}: CharacterCardProps) {
   const [imageLoaded, setImageLoaded] = useState(false);
   const [showSkeleton, setShowSkeleton] = useState(false);
 
   return (
     <div
-      className={`relative w-70 h-90 md:w-80 md:h-100 rounded-lg shadow-xl overflow-hidden transform transition-transform duration-300 ease-in-out hover:scale-105 mb-5 ${animationClass} `}
+      className={`relative w-70 h-90 md:w-80 md:h-100 rounded-lg shadow-xl overflow-hidden transform transition-transform duration-300 ease-in-out hover:scale-105 mb-5 ${animationClass}`}
       onAnimationEnd={() => {
         setShowSkeleton(true);
         setImageLoaded(false);
@@ -29,11 +32,11 @@ export default function CharacterCard({ character, onAnimationEnd, animationClas
         </div>
       )}
 
-      {!showSkeleton && (
+      {!showSkeleton && image && (
         <img
-          key={character?.image}
-          src={character?.image}
-          alt={character?.name}
+          key={image}
+          src={image}
+          alt={name}
           onLoad={() => setImageLoaded(true)}
           onError={() => setImageLoaded(true)}
           className={`
@@ -48,9 +51,9 @@ export default function CharacterCard({ character, onAnimationEnd, animationClas
         <div className="absolute inset-x-0 bottom-0 h-20 bg-linear-to-t from-black/80 to-transparent" />
       )}
 
-      {imageLoaded && !showSkeleton && (
+      {imageLoaded && !showSkeleton && name && (
         <h2 className="absolute bottom-2 left-2 right-2 text-white text-lg font-bold drop-shadow">
-          {character?.name}
+          {name}
         </h2>
       )}
     </div>

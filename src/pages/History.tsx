@@ -1,10 +1,11 @@
-import { ChevronLeftIcon, LogOut } from "lucide-react";
 import VoteItemCard from "../components/VoteItemCard";
-import { useVoteHistory, type VoteHistoryItem } from "../hooks/useVoteHistory";
+import { useVoteHistory } from "../hooks/useVoteHistory";
 import { useNavigate } from "react-router";
 import Loading from "../components/Loading";
 import { useAuth } from "../context/AuthContext";
 import ErrorPage from "./Error";
+import AppBar from "../components/AppBar";
+import type { VoteHistoryItem } from "../api/vote.api";
 
 export default function HistoryPage() {
   const { data, isLoading, error } = useVoteHistory();
@@ -27,22 +28,11 @@ export default function HistoryPage() {
 
   return (
     <>
-      <div className="fixed top-0 left-0 w-full flex items-center justify-between bg-white p-4 shadow-lg">
-        <div className="flex items-center">
-          <button
-            onClick={() => navigate(-1)}
-            className="p-2 rounded-full mr-2"
-          >
-            <ChevronLeftIcon className="w-6 h-6 text-gray-700" />
-          </button>
-
-          <h2 className="text-xl font-bold">Historial de votos</h2>
-        </div>
-
-        <button onClick={handleLogOut} className="p-2 rounded-full">
-          <LogOut className="w-6 h-6 text-red-500 cursor-pointer hover:text-red-700" />
-        </button>
-      </div>
+      <AppBar
+        title="Historial de votos"
+        onBack={() => navigate(-1)}
+        onLogout={handleLogOut}
+      />
       <div className="max-w-md mx-auto mt-30 px-2">
         <p className="text-sm text-black font-bold mb-4 flex items-center gap-4">
           <span>

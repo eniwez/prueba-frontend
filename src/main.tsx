@@ -11,7 +11,7 @@ import LoginPage from "./pages/Login.tsx";
 import VerifyPage from "./pages/Verify.tsx";
 import HistoryPage from "./pages/History.tsx";
 import ErrorPage from "./pages/Error.tsx";
-import { LoginSuccessPage } from "./pages/LoginSuccess.tsx";
+import TopPage from "./pages/Top.tsx";
 
 const queryClient = new QueryClient();
 
@@ -26,6 +26,7 @@ createRoot(document.getElementById("root")!).render(
               <Route path="/login" element={<LoginPage />} />
               <Route path="/verify" element={<VerifyPage />} />
               <Route path="/history" element={<HistoryPage />} />
+              <Route path="/top" element={<TopPage />} />
               <Route path="/error" element={<ErrorPage />} />
               <Route
                 path="*"

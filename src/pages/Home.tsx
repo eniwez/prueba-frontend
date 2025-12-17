@@ -22,7 +22,7 @@ export default function HomePage() {
   const [animationClass, setAnimationClass] = useState("");
 
   if (isLoading) return <Loading />;
-  if (error) return <ErrorPage />;
+  if (error || !data) return <ErrorPage />;
 
   const handleVote = (type: "like" | "dislike") => {
     if (isAnimating || !data) return;
@@ -51,15 +51,16 @@ export default function HomePage() {
         }}
       ></div>
       <div className="flex flex-col items-center justify-center ">
-        <div className="flex justify-center items-center mt-10 mb-20">
+        <div className="flex justify-center items-center mt-10 mb-10">
           <img
             src={logoImage}
             alt="Rick and Morty"
-            className="w-full h-20 sm:h-40 drop-shadow-[0_10px_15px_rgba(0,0,0,0.5)] transform hover:-translate-y-2 transition duration-300 ease-in-out"
+            className="w-full h-20 sm:h-30 drop-shadow-[0_10px_15px_rgba(0,0,0,0.5)] transform hover:-translate-y-2 transition duration-300 ease-in-out"
           />
         </div>
         <CharacterCard
-          character={data}
+          image={data.image}
+          name={data.name}
           animationClass={animationClass}
           onAnimationEnd={() => {
             setAnimationClass("");
@@ -68,6 +69,7 @@ export default function HomePage() {
         />
         <ActionButtons
           onLike={() => handleVote("like")}
+          onTop={() => navigate("/top")}
           onDislike={() => handleVote("dislike")}
           onHistory={handleHistory}
         />

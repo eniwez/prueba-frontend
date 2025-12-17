@@ -1,4 +1,3 @@
-// utils/fetchClient.ts
 export async function fetchClient<T>(
   url: string,
   options: RequestInit & { token?: string } = {}

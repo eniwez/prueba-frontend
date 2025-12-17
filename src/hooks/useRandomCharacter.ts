@@ -1,19 +1,12 @@
 import { useQuery } from "@tanstack/react-query";
 import { useAuth } from "../context/AuthContext";
-import { getRandomCharacter } from "../api/character.api";
+import { getRandomCharacter, type CharacterResponse } from "../api/character.api";
 
-export interface Character {
-  _id: string;
-  name: string;
-  externalId: number;
-  image: string;
-  likes: number;
-  dislikes: number;
-}
+
 export function useRandomCharacter() {
   const { token, logout } = useAuth();
 
-  return useQuery<Character>({
+  return useQuery<CharacterResponse>({
     queryKey: ["random-character"],
     enabled: !!token,
     retry: false,
