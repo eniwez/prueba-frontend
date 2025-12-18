@@ -3,10 +3,11 @@ import { getTopCharacter } from "../api/character.api";
 import { useAuth } from "../context/AuthContext";
 
 export function useTopCharacter() {
-      const { token } = useAuth();
+  const { token } = useAuth();
   return useQuery({
     queryKey: ["topCharacter"],
-    staleTime: 1000 * 60 * 5,
+    staleTime: 0,
+    refetchOnMount: "always",
     queryFn: () => getTopCharacter(token!),
   });
 }
