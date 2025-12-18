@@ -20,7 +20,7 @@ export interface TopCharacterResponse {
 }
 
 export function getRandomCharacter(token: string | undefined) {
-  return fetchClient<CharacterResponse>(`${API.CHARACTERS}/random`, {
+  return fetchClient<CharacterResponse>(`${API.CHARACTERS_RANDOM}`, {
     method: "GET",
     token,
   });
@@ -28,7 +28,7 @@ export function getRandomCharacter(token: string | undefined) {
 
 
 export function getTopCharacter(token: string | undefined) {
-  return fetchClient<TopCharacterResponse>(`${API.CHARACTERS}/top`, {
+  return fetchClient<TopCharacterResponse>(`${API.CHARACTERS_TOP}`, {
     method: "GET",
     token,
   });

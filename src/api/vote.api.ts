@@ -1,7 +1,6 @@
 import { fetchClient } from "../utils/fetchClient";
 import { API } from "../config/api";
 
-
 export interface Character {
   _id: string;
   name: string;
@@ -17,11 +16,10 @@ export interface VoteHistoryItem {
   updatedAt: string;
 }
 
-
 export function voteCharacter(
   id: string,
   type: "like" | "dislike",
-  token: string | undefined 
+  token: string | undefined
 ) {
   return fetchClient(`${API.VOTE}/${id}/${type}`, {
     method: "POST",
@@ -30,7 +28,7 @@ export function voteCharacter(
 }
 
 export function getVoteHistory(token: string | undefined) {
-  return fetchClient<VoteHistoryItem[]>(`${API.VOTE}/history`, {
+  return fetchClient<VoteHistoryItem[]>(`${API.VOTE_HISTORY}`, {
     method: "GET",
     token,
   });
