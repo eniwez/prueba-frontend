@@ -3,11 +3,11 @@ import { getTopCharacter } from "../api/character.api";
 import { useAuth } from "./useAuth";
 
 export function useTopCharacter() {
-  const { token } = useAuth();
+  const { token,logout } = useAuth();
   return useQuery({
     queryKey: ["topCharacter"],
     staleTime: 0,
     refetchOnMount: "always",
-    queryFn: () => getTopCharacter(token!),
+    queryFn: () => getTopCharacter(token!,logout),
   });
 }

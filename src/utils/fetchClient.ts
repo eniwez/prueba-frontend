@@ -1,8 +1,8 @@
 export async function fetchClient<T>(
   url: string,
-  options: RequestInit & { token?: string } = {}
+  options: RequestInit & { token?: string; onUnauthorized?: () => void } = {}
 ): Promise<T> {
-  const { token, headers, ...rest } = options;
+  const { token, headers,onUnauthorized, ...rest } = options;
 
   const response = await fetch(url, {
     ...rest,
@@ -16,6 +16,9 @@ export async function fetchClient<T>(
 
   if (!response.ok) {
     if (response.status === 401) {
+       if (onUnauthorized) {
+        onUnauthorized();
+      }
       throw new Error("Unauthorized");
     }
 

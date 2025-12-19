@@ -38,10 +38,6 @@ export default function HomePage() {
     vote({ id: data._id, type });
   };
 
-  const handleHistory = () => {
-    navigate("/history");
-  };
-
   return (
     <div className="min-h-screen relative overflow-hidden ">
       <div
@@ -71,7 +67,8 @@ export default function HomePage() {
           onLike={() => handleVote("like")}
           onTop={() => navigate("/top")}
           onDislike={() => handleVote("dislike")}
-          onHistory={handleHistory}
+          onHistory={() => navigate("/history")}
+          onSearch={() => navigate("/search")}
         />
       </div>
     </div>

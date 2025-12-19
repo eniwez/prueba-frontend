@@ -5,6 +5,7 @@ export const API = {
   VERIFY: `${API_BASE_URL}/auth/verify`,
   CHARACTERS_RANDOM: `${API_BASE_URL}/characters/random`,
   CHARACTERS_TOP: `${API_BASE_URL}/characters/top`,
+  CHARACTERS_SEARCH: `${API_BASE_URL}/characters/search`,
   VOTE: `${API_BASE_URL}/votes`,
   VOTE_HISTORY: `${API_BASE_URL}/votes/history`,
 };

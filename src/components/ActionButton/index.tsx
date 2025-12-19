@@ -13,12 +13,12 @@ export function ActionButton({
   size = "lg",
   children,
 }: ActionButtonProps) {
-  const sizes = size === "lg" ? "w-20 h-20" : "w-16 h-16";
+  const sizes = size === "lg" ? "w-20 h-20" : "w-14 h-14";
 
   return (
     <button
       onClick={onClick}
-      className={`${sizes} rounded-full ${bgColor} shadow-lg
+      className={`${sizes} rounded-full ${bgColor} border border-gray-200 shadow-lg
         flex items-center justify-center
         hover:scale-110 transition`}
     >

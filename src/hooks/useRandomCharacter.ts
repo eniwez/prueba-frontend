@@ -18,7 +18,7 @@ export function useRandomCharacter() {
 
     queryFn: async () => {
       try {
-        return await getRandomCharacter(token!);
+        return await getRandomCharacter(token!,logout);
       } catch (error: unknown) {
         if (error instanceof Error && error.message === "Unauthorized") {
           logout();

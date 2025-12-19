@@ -33,7 +33,7 @@ export default function HistoryPage() {
         onBack={() => navigate(-1)}
         onLogout={handleLogOut}
       />
-      <div className="max-w-md mx-auto mt-30 px-2">
+      <div className="max-w-md mx-auto mt-30 px-2 pb-20">
         <p className="text-sm text-black font-bold mb-4 flex items-center gap-4">
           <span>
             Total Me gusta:{" "}

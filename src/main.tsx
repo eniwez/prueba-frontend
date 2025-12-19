@@ -12,6 +12,7 @@ import VerifyPage from "./pages/Verify.tsx";
 import HistoryPage from "./pages/History.tsx";
 import ErrorPage from "./pages/Error.tsx";
 import TopPage from "./pages/Top.tsx";
+import SearchPage from "./pages/Search.tsx";
 
 const queryClient = new QueryClient();
 
@@ -27,6 +28,7 @@ createRoot(document.getElementById("root")!).render(
               <Route path="/verify" element={<VerifyPage />} />
               <Route path="/history" element={<HistoryPage />} />
               <Route path="/top" element={<TopPage />} />
+              <Route path="/search" element={<SearchPage />} />
               <Route path="/error" element={<ErrorPage />} />
               <Route
                 path="*"

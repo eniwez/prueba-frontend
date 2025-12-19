@@ -1,4 +1,4 @@
-import { ThumbsDown, ThumbsUpIcon, History, Star } from "lucide-react";
+import { ThumbsDown, ThumbsUpIcon, History, Star, Search } from "lucide-react";
 import { ActionButton } from "../ActionButton";
 
 interface ActionButtonsProps {
@@ -6,6 +6,7 @@ interface ActionButtonsProps {
   onDislike: () => void;
   onHistory: () => void;
   onTop?: () => void;
+  onSearch?: () => void;
 }
 
 export default function ActionButtons({
@@ -13,6 +14,7 @@ export default function ActionButtons({
   onDislike,
   onHistory,
   onTop,
+  onSearch
 }: ActionButtonsProps) {
   return (
     <div className="mt-6 flex flex-col items-center gap-2">
@@ -26,14 +28,30 @@ export default function ActionButtons({
         </ActionButton>
       </div>
 
-      <div className="flex justify-center gap-6">
-        <ActionButton onClick={onHistory} bgColor="bg-[#40b5cc]" size="sm">
-          <History size={28} className="text-white" />
-        </ActionButton>
+      <div className="flex justify-center gap-4">
+        <button
+          onClick={onHistory}
+          className="flex items-center gap-2 px-5 py-3 rounded-full border border-gray-100 shadow-lg hover:scale-110 transition bg-white"
+        >
+          <History size={22} className="text-blue-500 " />
+          Historial
+        </button>
 
-        <ActionButton onClick={onTop} bgColor="bg-[#dedb05]" size="sm">
-          <Star size={28} className="text-white" />
-        </ActionButton>
+        <button
+          onClick={onSearch}
+          className="flex items-center gap-2 px-5 py-3 rounded-full border border-gray-100 shadow-lg hover:scale-110 transition bg-white"
+        >
+          <Search size={22} />
+          Buscar
+        </button>
+
+        <button
+          onClick={onTop}
+          className="flex items-center gap-2 px-5 py-3 rounded-full border border-gray-100 shadow-lg hover:scale-110 transition bg-white"
+        >
+          <Star size={22} className="text-yellow-500 fill-yellow-400" />
+          Top
+        </button>
       </div>
     </div>
   );

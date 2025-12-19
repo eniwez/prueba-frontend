@@ -26,7 +26,8 @@ export default function VerifyPage() {
         navigate("/error");
       },
     });
-  },  [token, navigate, login, verifyMutation]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [token]);
 
   return <Loading />;
 }
