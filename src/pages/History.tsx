@@ -2,7 +2,7 @@ import VoteItemCard from "../components/VoteItemCard";
 import { useVoteHistory } from "../hooks/useVoteHistory";
 import { useNavigate } from "react-router";
 import Loading from "../components/Loading";
-import { useAuth } from "../context/AuthContext";
+import { useAuth } from "../hooks/useAuth";
 import ErrorPage from "./Error";
 import AppBar from "../components/AppBar";
 import type { VoteHistoryItem } from "../api/vote.api";

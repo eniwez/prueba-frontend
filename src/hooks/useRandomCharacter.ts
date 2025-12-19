@@ -1,7 +1,9 @@
 import { useQuery } from "@tanstack/react-query";
-import { useAuth } from "../context/AuthContext";
-import { getRandomCharacter, type CharacterResponse } from "../api/character.api";
-
+import { useAuth } from "./useAuth";
+import {
+  getRandomCharacter,
+  type CharacterResponse,
+} from "../api/character.api";
 
 export function useRandomCharacter() {
   const { token, logout } = useAuth();
@@ -17,8 +19,8 @@ export function useRandomCharacter() {
     queryFn: async () => {
       try {
         return await getRandomCharacter(token!);
-      } catch (error: any) {
-        if (error.message === "Unauthorized") {
+      } catch (error: unknown) {
+        if (error instanceof Error && error.message === "Unauthorized") {
           logout();
           throw new Error("Sesión expirada.");
         }

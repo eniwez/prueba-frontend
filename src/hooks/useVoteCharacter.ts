@@ -1,5 +1,5 @@
 import { useMutation, useQueryClient } from "@tanstack/react-query";
-import { useAuth } from "../context/AuthContext";
+import { useAuth } from "./useAuth";
 import { voteCharacter } from "../api/vote.api";
 
 export function useVoteCharacter() {

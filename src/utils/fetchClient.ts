@@ -8,6 +8,7 @@ export async function fetchClient<T>(
     ...rest,
     headers: {
       "Content-Type": "application/json",
+      "Cache-Control": "no-cache",
       ...(headers || {}),
       ...(token ? { Authorization: `Bearer ${token}` } : {}),
     },
@@ -22,7 +23,9 @@ export async function fetchClient<T>(
     try {
       const error = await response.json();
       message = error.message ?? message;
-    } catch {}
+    } catch {
+      //
+    }
 
     throw new Error(message);
   }

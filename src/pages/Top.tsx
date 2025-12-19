@@ -1,6 +1,6 @@
 import { useNavigate } from "react-router";
 import AppBar from "../components/AppBar";
-import { useAuth } from "../context/AuthContext";
+import { useAuth } from "../hooks/useAuth";
 import { useTopCharacter } from "../hooks/useTopCharacter";
 import Loading from "../components/Loading";
 import ErrorPage from "./Error";

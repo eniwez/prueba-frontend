@@ -1,7 +1,7 @@
 import { useNavigate, useSearchParams } from "react-router";
 import { useEffect } from "react";
 import { useVerify } from "../hooks/useVerify";
-import { useAuth } from "../context/AuthContext";
+import { useAuth } from "../hooks/useAuth";
 import Loading from "../components/Loading";
 
 export default function VerifyPage() {
@@ -26,7 +26,7 @@ export default function VerifyPage() {
         navigate("/error");
       },
     });
-  }, [token]);
+  },  [token, navigate, login, verifyMutation]);
 
   return <Loading />;
 }

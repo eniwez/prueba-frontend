@@ -1,6 +1,6 @@
 import { useQuery } from "@tanstack/react-query";
 import { getTopCharacter } from "../api/character.api";
-import { useAuth } from "../context/AuthContext";
+import { useAuth } from "./useAuth";
 
 export function useTopCharacter() {
   const { token } = useAuth();
